@@ -13,12 +13,12 @@ Evolution steps:
 
 
 import inspect
-import logging
+import logging as log
 
 from netaddr.ip import IPNetwork, IPAddress
 
 # Set log level to benefit from Scapy warnings
-logging.getLogger("scapy").setLevel(1)
+log.getLogger("scapy").setLevel(1)
 
 from scapy.all import *
 from scapy.layers.inet import IP, UDP
@@ -28,7 +28,7 @@ BACNET_PORT = 47808
 
 
 class Enum(object):
-    _intern = object.__dict__.keys() + ['__module__', '__dict__', '__weakref__', '_intern']
+    _intern = [k for k in object.__dict__.keys()] + ['__module__', '__dict__', '__weakref__', '_intern']
 
     @classmethod
     def keys(cls):
